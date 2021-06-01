@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# This is a simple helper file so make-waves.sh can have a single "word"
+# for execution of the java "Hello, World!"
+
+java HelloW
