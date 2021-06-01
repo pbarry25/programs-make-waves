@@ -8,7 +8,7 @@ An example of a computer system doing this "code to tones" trick can be viewed [
 
 NOTE that `make-waves.sh` was developed under Ubuntu 20.04 x64, but should work on any system with `syscall` and a modern bash interpreter.  I probably shouldn't have done this as a bash script, but, well, here we are...  :)
 
-This project currently supports 8 versions of "Hello, World!":
+This project currently contains 8 versions of "Hello, World!" to showcase the `make-waves.sh` script ability (but you can absolutely use `make-waves.sh` to create tones from YOUR progams, too!):
 
 * C
 * go
