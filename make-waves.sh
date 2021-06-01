@@ -107,7 +107,7 @@ do
 	TOTAL_SAMPLE_COUNT=0
 	while read -r FREQ
 	do
-		if [ ! -e ${HWFILE}.${FREQ}.wav.tmp ]
+		if [ ! -e tmp-freq-${FREQ}.wav ]
 		then
 			# We haven't created waveform samples for this frequency yet, so do now...
 			# Compute the cycles needed to create this frequency for 16kHz sample rate...

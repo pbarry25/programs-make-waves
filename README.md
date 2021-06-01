@@ -59,7 +59,7 @@ WAV file for bash's "Hello, World!" (results in `hellow.sh.wav`):
 
 `./make-waves.sh ./hellow.sh`
 
-You can use `make waves` to create ALL of the WAV files (will take a number of minutes), and you can use `make clobber` to remove compiled artifacts AND all WAV files.
+You can use `make waves` to create ALL of the WAV files (might take a minute), and you can use `make clobber` to remove compiled artifacts AND all WAV files.
 
 ## Potential improvements
 
