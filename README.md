@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple implementation of "turning code execution into audio".  With a history back into the mid 20th century, programmers and operators historically would use these type of sounds coming from a computer to detect (via sound!) a program hang (i.e. a runinning program would have constantly changing sounds, but a hung program gets stuck on one tone indefinitely).
+This is a simple implementation of "turning code execution into audio". With a history back into the mid 20th century, programmers and operators historically would use these type of sounds coming from a computer to detect (via sound!) a program hang (i.e. a runinning program would have constantly changing sounds, but a hung program gets stuck on one tone indefinitely).
 
 An example of a computer system doing this "code to tones" trick can be viewed [here](https://www.youtube.com/watch?v=6vfa_RC_y1M&t=11s).
 
@@ -59,7 +59,7 @@ WAV file for bash's "Hello, World!" (results in `hellow.sh.wav`):
 
 `./make-waves.sh ./hellow.sh`
 
-You can use `make clobber` to remove compiled artifacts AND all WAV files.
+You can use `make waves` to create ALL of the WAV files (will take a number of minutes), and you can use `make clobber` to remove compiled artifacts AND all WAV files.
 
 ## Potential improvements
 

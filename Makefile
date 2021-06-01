@@ -1,4 +1,4 @@
-.PHONE: all clean clobber
+.PHONY: all waves clean clobber
 
 all: hellow-c hellow-rs hellow-go HelloW.class
 
@@ -13,6 +13,9 @@ hellow-go: hellow.go
 
 HelloW.class: hellow.java
 	javac $^
+
+waves: all
+	./make-waves.sh ./hellow-c ./hellow-rs ./hellow-go ./hellow-java ./hellow.pl ./hellow.rb ./hellow.sh ./hellow.py
 
 clean:
 	rm -f hellow-c hellow-rs hellow-go HelloW.class

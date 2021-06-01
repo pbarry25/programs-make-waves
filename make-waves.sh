@@ -10,7 +10,7 @@ then
 	exit 1
 fi
 
-HWFILES=${1}
+HWFILES=${*}
 
 # Number of WAVE samples per tone...
 SAMPLE_COUNT_SLICE=1000
@@ -71,9 +71,11 @@ for HWFILE in ${HWFILES}
 do
 	if [ ! -e ${HWFILE} ]
 	then
-		echo "Could not locate file \"${HWFILE}\", skipping..."
+		echo "Could not locate file ${HWFILE}, skipping..."
 		continue
 	fi
+
+	echo -n "Processing ${HWFILE}..."
 
 	# Execute program and convert SYSCALLS to arbitrary byte values (0-255)...
 	rm -f ${HWFILE}.rawdat
@@ -152,6 +154,7 @@ do
 		fi
 		cat tmp-freq-${FREQ}.wav >> ${HWFILE}.wav.tmp
 		TOTAL_SAMPLE_COUNT=$((TOTAL_SAMPLE_COUNT + SAMPLE_COUNT_SLICE))
+		echo -n "."
 	done < ${HWFILE}.freqdat
 	rm -f ${HWFILE}.freqdat
 	rm -f ${HWFILE}.*.wav.tmp
@@ -160,6 +163,8 @@ do
 	rm -f ${HWFILE}.wav
 	write_wave_file ${HWFILE}.wav ${TOTAL_SAMPLE_COUNT} 2
 	rm -f ${HWFILE}.wav.tmp
+
+	echo " Done."
 done
 rm -f tmp-freq-*.wav
 
