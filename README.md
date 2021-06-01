@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple implementation of "turning code execution into audio". With a history back into the mid 20th century, programmers and operators historically would use these type of sounds coming from a computer to detect (via sound!) a program hang (i.e. a runinning program would have constantly changing sounds, but a hung program gets stuck on one tone indefinitely).
+This is a simple implementation of "turning code execution into audio". With a history back into the mid 20th century, programmers and operators historically would use these type of sounds coming from a computer to detect (via sound!) a program hang (i.e. a running program would have constantly changing sounds, but a hung program gets stuck on one tone indefinitely).
 
 An example of a computer system doing this "code to tones" trick can be viewed [here](https://www.youtube.com/watch?v=6vfa_RC_y1M&t=11s).
 
