@@ -69,17 +69,32 @@ declare -A CALL_MAP
 rm -f tmp-freq-*.wav
 for HWFILE in ${HWFILES}
 do
-	if [ ! -e ${HWFILE} ]
+	if [ ! -f ${HWFILE} ]
 	then
-		echo "Could not locate file ${HWFILE}, skipping..."
+		echo "Could not locate file ${HWFILE}, skipping... (make sure path is specified)"
 		continue
 	fi
 
 	echo -n "Processing ${HWFILE}..."
 
 	# Execute program and convert SYSCALLS to arbitrary byte values (0-255)...
+	rm -f ${HWFILE}.strace.tmp
+	ERRORS="`strace -o ${HWFILE}.strace.tmp ${HWFILE} 2>&1`"
+	RETVAL=${?}
+	if [ ${RETVAL} -ne 0 ]; then
+		if [ -n "`echo ${ERRORS} | sed -n '/No such file/p'`" ]; then
+			echo "Could not locate file ${HWFILE}, skipping... (make sure path is specified with filename)"
+			continue
+		elif [ -n "`echo ${ERRORS} | sed -n '/Permission denied/p'`" ]; then
+			echo "Could not 'run' file ${HWFILE}, skipping... (make sure file is compiled executable or executable script)"
+			continue
+		else
+			echo "Unknown error with 'strace': ${ERRORS}"
+			exit 1
+		fi
+	fi
 	rm -f ${HWFILE}.rawdat
-	for CALL in `strace ${HWFILE} 2>&1 | sed -n 's/^\([^(]*\)(.*$/\1/p'`
+	for CALL in `cat ${HWFILE}.strace.tmp | sed -n 's/^\([^(]*\)(.*$/\1/p'`
 	do
 		if [ -z "${CALL_MAP[$CALL]}" ]
 		then
@@ -92,6 +107,7 @@ do
 		fi
 		echo $TONE >> ${HWFILE}.rawdat
 	done
+	rm -f ${HWFILE}.strace.tmp
 
 	# Convert to note frequency (Hz)...
 	rm -f ${HWFILE}.freqdat
